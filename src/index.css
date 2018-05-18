@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-figure {
+  flex-basis: calc(20%);
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 20px;
+}
+
+.grid-photo {
+  max-width: none;
+}
