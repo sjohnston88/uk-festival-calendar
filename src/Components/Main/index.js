@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import SearchBar from "material-ui-search-bar";
-import Pagination from "material-ui-pagination";
-import PhotoGrid from "./PhotoGrid";
-import AppBar from "material-ui/AppBar";
+//import Pagination from "material-ui-pagination@next";
+import Header from "../Header";
+import PhotoGrid from "../PhotoGrid";
 import axios from "axios";
 import moment from "moment";
 
-class App extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,36 +59,12 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <AppBar title={this.state.siteName} showMenuIconButton={false} />
-        <SearchBar
-          placeholder="Search by Postcode"
-          dataSource={this.state.festivalData}
-          onChange={value => console.log(value)}
-          onRequestSearch={() => console.log("onRequestSearch")}
-          style={{
-            margin: "50px auto",
-            maxWidth: 800
-          }}
-        />
-        <Pagination
-          styleRoot={{ margin: "50px auto", width: "fit-content" }}
-          total={this.state.pageTotal}
-          current={this.state.currentPage}
-          display={this.state.NumberOfPagesToShow}
-          onChange={currentPage => this.handlePageChange(currentPage)}
-        />
+      <div>
+        <Header siteName={this.state.siteName} />
         <PhotoGrid festivalData={this.state.festivalData} />
-        <Pagination
-          styleRoot={{ margin: "50px auto", width: "fit-content" }}
-          total={this.state.pageTotal}
-          current={this.state.currentPage}
-          display={this.state.NumberOfPagesToShow}
-          onChange={currentPage => this.handlePageChange(currentPage)}
-        />
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
 
-export default App;
+export default Main;
