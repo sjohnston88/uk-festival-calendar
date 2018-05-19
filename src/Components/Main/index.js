@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-//import Pagination from "material-ui-pagination@next";
+import { withStyles } from "@material-ui/core/styles";
 import Header from "../Header";
 import PhotoGrid from "../PhotoGrid";
+import Pagination from "../Pagination";
 import axios from "axios";
 import moment from "moment";
+import styles from "./styles";
 
 class Main extends Component {
   constructor(props) {
@@ -13,12 +15,13 @@ class Main extends Component {
       fetchOffset: 0,
       festivalData: [],
       totalResults: 0,
-      NumberOfPagesToShow: 10,
+      NumberOfPagesToShow: 6,
       pageTotal: 0
     };
     this.getFestivals = this.getFestivals.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
   }
+
   async getFestivals(offset) {
     let apiKey = process.env.REACT_APP_SKIDDLE_API_KEY;
     try {
@@ -38,7 +41,7 @@ class Main extends Component {
 
   async componentDidMount() {
     let festivalData = await this.getFestivals();
-    let totalPages = Math.ceil(festivalData.data.totalcount / 20);
+    let totalPages = Math.ceil(festivalData.data.totalcount / 20) - 1;
     this.setState({
       festivalData: festivalData.data.results,
       totalResults: festivalData.data.totalcount,
@@ -61,10 +64,24 @@ class Main extends Component {
     return (
       <div>
         <Header siteName={this.state.siteName} />
-        <PhotoGrid festivalData={this.state.festivalData} />
+        <div className={this.props.classes.wrapper}>
+          <Pagination
+            total={this.state.pageTotal}
+            current={this.state.currentPage}
+            display={this.state.NumberOfPagesToShow}
+            onChange={this.handlePageChange}
+          />
+          <PhotoGrid festivalData={this.state.festivalData} />
+          <Pagination
+            total={this.state.pageTotal}
+            current={this.state.currentPage}
+            display={this.state.NumberOfPagesToShow}
+            onChange={this.handlePageChange}
+          />
+        </div>
       </div>
     );
   }
 }
 
-export default Main;
+export default withStyles(styles)(Main);

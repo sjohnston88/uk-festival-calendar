@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
+import Button from "@material-ui/core/Button";
 import moment from "moment";
 import styles from "./styles";
 
@@ -38,6 +39,13 @@ class FestivalCard extends Component {
           href={this.props.festival.link}
         />
         <CardContent>
+          <Typography
+            color="textSecondary"
+            component="p"
+            className={this.props.classes.prices}
+          >
+            {this.props.festival.entryprice}
+          </Typography>
           <Typography component="p">
             {this.props.festival.description}
           </Typography>
@@ -46,12 +54,22 @@ class FestivalCard extends Component {
           className={this.props.classes.actions}
           disableActionSpacing
         >
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
+          <Button
+            href={this.props.festival.link}
+            color="primary"
+            target="_blank"
+            size="small"
+          >
+            Learn More
+          </Button>
+          <div style={{ float: "right" }}>
+            <IconButton aria-label="Add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="Share">
+              <ShareIcon />
+            </IconButton>
+          </div>
         </CardActions>
       </Card>
     );

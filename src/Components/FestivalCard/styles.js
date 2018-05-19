@@ -1,27 +1,18 @@
-import red from "@material-ui/core/colors/red";
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    maxWidth: 400,
+    minWidth: 400
   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
   },
   actions: {
-    display: "flex"
+    display: "flex",
+    justifyContent: "space-between"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
+  prices: {
+    paddingBottom: "1em"
   }
 });
 
