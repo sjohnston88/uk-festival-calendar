@@ -62,7 +62,7 @@ class FestivalCard extends Component {
           >
             Learn More
           </Button>
-          <div style={{ float: "right" }}>
+          <div>
             <IconButton aria-label="Add to favorites">
               <FavoriteIcon />
             </IconButton>
